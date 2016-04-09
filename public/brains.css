@@ -1,0 +1,185 @@
+body {
+  background-color: #000;
+  color: white;
+}
+
+.centered {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  99;
+}
+
+#debug {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-right: 1px solid red;
+  border-bottom: 1px solid red;
+}
+
+@keyframes pulse {
+  0% {
+    width:0px;
+    width:0px;
+    border: 0;
+  }
+  1% {
+	width: 10px;
+	height: 10px; 
+    border: 5px solid green;
+  }
+  50% {
+	width: 750px;
+	height: 750px; 
+    border: 5px solid blue;
+  }
+  99% {
+    width: 10px;
+    height: 10px;
+    border: 5px solid green;
+  }
+  100% {
+    border: 0;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    color: white;
+  }
+  100% {
+    color: #333;
+  }
+}
+@keyframes glow {
+  0% {
+    color: white;
+  }
+  100% {
+    color: #ffc;
+  }
+}
+
+.pulsing {
+    -webkit-animation-name: pulse;
+    -webkit-animation-duration: 15s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: pulse;
+    -moz-animation-duration: 15s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-name: pulse;
+    -ms-animation-duration: 15s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: ease-in-out;
+	animation-name: pulse; 
+	animation-duration: 15s;
+	animation-iteration-count: infinite; 
+	animation-timing-function: ease-in-out;
+}
+
+.fadeout {
+    -webkit-animation-name: fadeout;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: fadeout;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-name: fadeout;
+    -ms-animation-duration: 3s;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-timing-function: linear;
+    -ms-animation-fill-mode: forwards;
+	animation-name: fadeout; 
+	animation-duration: 3s;
+	animation-iteration-count: 1; 
+	animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+.glow {
+    -webkit-animation-name: glow;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: glow;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: linear;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-name: glow;
+    -ms-animation-duration: 3s;
+    -ms-animation-iteration-count: 1;
+    -ms-animation-timing-function: linear;
+    -ms-animation-fill-mode: forwards;
+	animation-name: glow; 
+	animation-duration: 3s;
+	animation-iteration-count: 1; 
+	animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+#idle {
+  border-radius: 50%;
+  margin: auto;
+}
+
+#letters {
+  display: none;
+  margin: auto;
+  height: 700px;
+  width: 30px;
+}
+
+.column {
+  position: fixed;
+  overflow: hidden;
+  height: 700px;
+  max-height: 700px;
+  width: 30px;
+  margin: auto;
+}
+
+.innerLetters {
+  top: 0;
+  height: 350px;
+  max-height: 350px;
+  padding-top: 350px;
+  overflow: hidden;
+}
+
+#col1 {transform: rotate(0deg);   margin-top:1px;}
+#col2 {transform: rotate(15deg);  margin-top:2px;}
+#col3 {transform: rotate(30deg);  margin-top:3px;}
+#col4 {transform: rotate(45deg);  margin-top:4px;}
+#col5 {transform: rotate(60deg);  margin-top:5px;}
+#col6 {transform: rotate(75deg);  margin-top:6px;}
+#col7 {transform: rotate(90deg);  margin-top:7px;}
+#col8 {transform: rotate(105deg); margin-top:8px;}
+#col9 {transform: rotate(120deg); margin-top:9px;}
+#col10 {transform: rotate(135deg);margin-top:11px;}
+#col11 {transform: rotate(150deg);margin-top:12px;}
+#col12 {transform: rotate(165deg);margin-top:13px;}
+#col13 {transform: rotate(180deg);margin-top:14px;}
+#col14 {transform: rotate(195deg);margin-top:15px;}
+#col15 {transform: rotate(210deg);margin-top:17px;}
+#col16 {transform: rotate(225deg);margin-top:18px;}
+#col17 {transform: rotate(240deg);margin-top:19px;}
+#col18 {transform: rotate(255deg);margin-top:20px;}
+#col19 {transform: rotate(270deg);margin-top:21px;}
+#col20 {transform: rotate(285deg);margin-top:22px;}
+#col21 {transform: rotate(300deg);margin-top:23px;}
+#col22 {transform: rotate(315deg);margin-top:25px;}
+#col23 {transform: rotate(330deg);margin-top:26px;}
+#col24 {transform: rotate(345deg);margin-top:27px;}

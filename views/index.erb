@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Braaaaaaaiiins</title>
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/brains.css">
+  <script src="/jquery-2.1.3.min.js"></script>
+  <script src="/brains.js"></script>
+  <script type="text/javascript">
+  </script>
+</head>
+
+<body style="height: 100%; width:100%;">
+  <div class="container">
+    <% if @debug %>
+      <div id="debug">
+        <div id="debugGo" class="btn">GO!</div>
+      </div>
+      <script>
+        $("#debugGo").click(function(){start();});
+      </script>
+    <% end %>
+    <div class="overlay">
+      <div class="centered pulsing" id="idle">&nbsp;</div>
+      <div class="centered" id="letters">
+        <% (1..24).to_a.shuffle.each_with_index do |x,i| %>
+        <div class="column" id="col<%=x%>">
+          <div class="innerLetters phase<%=i%3%>" id="inner<%=x%>">
+            <p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p><p>A</p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    window.onload = function(){
+      connectSocket();
+    }
+  </script>
+</body>
+</html>
