@@ -25,27 +25,19 @@ body {
 
 @keyframes pulse {
   0% {
-    width:0px;
-    width:0px;
-    border: 0;
-  }
-  1% {
-	width: 10px;
-	height: 10px; 
+    width: 50px;
+    height: 50px;
     border: 5px solid green;
   }
   50% {
-	width: 750px;
-	height: 750px; 
+	width: 850px;
+	height: 850px; 
     border: 5px solid blue;
   }
-  99% {
-    width: 10px;
-    height: 10px;
-    border: 5px solid green;
-  }
   100% {
-    border: 0;
+    width: 50px;
+    height: 50px;
+    border: 5px solid green;
   }
 }
 
@@ -138,24 +130,24 @@ body {
 #letters {
   display: none;
   margin: auto;
-  height: 700px;
+  height: 850px;
   width: 30px;
 }
 
 .column {
   position: fixed;
   overflow: hidden;
-  height: 700px;
-  max-height: 700px;
+  height: 850px;
+  max-height: 850px;
   width: 30px;
   margin: auto;
 }
 
 .innerLetters {
   top: 0;
-  height: 350px;
-  max-height: 350px;
-  padding-top: 350px;
+  height: 400px;
+  max-height: 400px;
+  padding-top: 400px;
   overflow: hidden;
 }
 

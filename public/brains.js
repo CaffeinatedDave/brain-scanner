@@ -55,7 +55,7 @@ function start() {
 
   for (i = 0; i < words.length; i++) { 
     // Prepend the words with letters
-    var garbage = Math.floor(Math.random() * 10) + 5
+    var garbage = 20 + (Math.floor(Math.random() * 12) - 6)
     for (j = 0; j < garbage; j++) {
       var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
       $("#inner" + ((count % 24) + 1) ).append(html);
@@ -70,8 +70,7 @@ function start() {
     }
   }
 
-  var garbage = Math.floor(Math.random() * 10) + 15
-  for (j = 0; j < garbage; j++) {
+  while (count < 252) {
     var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
     $("#inner" + ((count % 24) + 1) ).append(html);
     count++;
@@ -80,25 +79,22 @@ function start() {
   $("#debug").hide();
   $("#idle").fadeOut(3000, function(){
     $("#letters").fadeIn(500);
-    $(".phase0").animate({
-      "padding-top": "250px"
-    }, 3000);
+    $(".phase0").animate({"padding-top": "250px"}, 3000);
   });
   setTimeout(function(){phase1();}, 10000);
 }
 
 function phase1() {
-  $(".phase0, .phase1").animate({
-    "padding-top": "150px"
-  }, 3000);
-  setTimeout(function(){phase2();}, 5000);
+  $(".phase0").animate({"padding-top": "125px"}, 3000);
+  $(".phase1").animate({"padding-top": "125px"}, 6000);
+  setTimeout(function(){phase2();}, 8000);
 }
 
 function phase2() {
-  $(".phase0, .phase1, .phase2").animate({
-    "padding-top": "0px"
-  }, 3000);
-  setTimeout(function(){phase3();}, 5000);
+  $(".phase0").animate({"padding-top": "0px"}, 3000);
+  $(".phase1").animate({"padding-top": "0px"}, 6000);
+  $(".phase2").animate({"padding-top": "0px"}, 9000);
+  setTimeout(function(){phase3();}, 10000);
 }
 
 function phase3() {
@@ -108,9 +104,10 @@ function phase3() {
 }
 
 function reset() {
-  $("#letters").fadeOut(500);
-  $("#idle").fadeIn(3000);
+  $("#letters").fadeOut(500, function(){
+    $("#idle").fadeIn(3000);
+    $(".innerLetters").css({"padding-top": "400px"});
+    $("#debug").show();
+  });
   
-  $(".innerLetters").css({"padding-top": "350px"});
-  $("#debug").show();
 }
