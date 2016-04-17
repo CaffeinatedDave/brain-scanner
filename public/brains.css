@@ -20,6 +20,10 @@ img {
   99;
 }
 
+#debug {
+  color: #222;
+}
+
 @keyframes pulse {
   0% {
     width: 150px;
