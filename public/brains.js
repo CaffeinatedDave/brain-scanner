@@ -85,33 +85,49 @@ function phase1() {
 }
 
 function phase2() {
-  var phrase = window.phrases[Math.floor(Math.random() * window.phrases.length)].toUpperCase();
-
-  var words = phrase.split(" ");
-  var count = 0;
   $(".innerLetters").html("")
+
+  for (i = 1; i <= 30; i++) {
+    var html = $.parseHTML('<p><img src="img/' + (Math.floor(Math.random() * 7) + 1) + '.gif"/></p>');
+    $("#inner" + i ).append(html);
+  }
+
+  var phrase = window.phrases[Math.floor(Math.random() * window.phrases.length)].toUpperCase();
+  var words = phrase.split(" ");
+  newLetters = [];
+  
+  padding = 23;
+
+  if (words.length > 10) {
+    padding = 18;
+  }
 
   for (i = 0; i < words.length; i++) { 
     // Prepend the words with letters
-    var garbage = 23 + (Math.floor(Math.random() * 12) - 6)
+    var garbage = padding + (Math.floor(Math.random() * 12) - 6)
     for (j = 0; j < garbage; j++) {
       var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
-      $("#inner" + ((count % 30) + 1) ).append(html);
-      count++;
+      newLetters.push(html);
     }
 
     // Add our letters... 
     for (j = 0; j < words[i].length; j++) {
       var html = $.parseHTML('<p class="phrasing">' + words[i][j] + '</p>');
-      $("#inner" + ((count % 30) + 1) ).append(html);
-      count++;
+      newLetters.push(html);
     }
   }
 
-  while (count < 330) {
+  while (newLetters.length < 330) {
     var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
-    $("#inner" + ((count % 30) + 1) ).append(html);
-    count++;
+    newLetters.push(html);
+    var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
+    newLetters.unshift(html);
+  }
+
+  var count = 0;
+  for (i = 0; i < newLetters.length; i++) {
+     $("#inner" + ((count % 30) + 1) ).append(newLetters[i]);
+     count++; 
   }
 
   $("#idle, #focus").fadeOut(3000, function(){

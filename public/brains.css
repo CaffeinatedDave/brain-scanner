@@ -3,6 +3,11 @@ body {
   color: white;
 }
 
+img {
+  width: 25px;
+  height: 25px;
+}
+
 .centered {
   margin: auto;
   position: absolute;
