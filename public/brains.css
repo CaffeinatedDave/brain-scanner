@@ -15,18 +15,10 @@ body {
   99;
 }
 
-#debug {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-right: 1px solid red;
-  border-bottom: 1px solid red;
-}
-
 @keyframes pulse {
   0% {
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
     border: 5px solid green;
   }
   50% {
@@ -35,8 +27,8 @@ body {
     border: 5px solid blue;
   }
   100% {
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
     border: 5px solid green;
   }
 }
@@ -127,6 +119,13 @@ body {
   margin: auto;
 }
 
+#focus {
+  display: none;
+  margin: auto;
+  height: 850px;
+  width: 30px;
+}
+
 #letters {
   display: none;
   margin: auto;
@@ -145,33 +144,81 @@ body {
 
 .innerLetters {
   top: 0;
-  height: 400px;
-  max-height: 400px;
-  padding-top: 400px;
+  height: 350px;
+  max-height: 350px;
+  padding-top: 350px;
   overflow: hidden;
 }
 
+.focusColumn {
+  position: fixed;
+  overflow: hidden;
+  height: 850px;
+  max-height: 850px;
+  width: 30px;
+  margin: auto;
+}
+
+.focusInnerLetters {
+  padding-top: 350px;
+  height: 425px;
+  max-height: 425px;
+  overflow: hidden;
+}
+
+#focusCol1 {transform: rotate(-120deg)}
+#focusCol2 {transform: rotate(-110deg)}
+#focusCol3 {transform: rotate(-100deg)}
+#focusCol4 {transform: rotate(-90deg)}
+#focusCol5 {transform: rotate(-80deg)}
+#focusCol6 {transform: rotate(-70deg)}
+#focusCol7 {transform: rotate(-60deg)}
+#focusCol8 {transform: rotate(-50deg)}
+#focusCol9 {transform: rotate(-40deg)}
+#focusCol10 {transform: rotate(-30deg)}
+#focusCol11 {transform: rotate(-20deg)}
+#focusCol12 {transform: rotate(-10deg)}
+#focusCol13 {transform: rotate(0deg)}
+#focusCol14 {transform: rotate(10deg)}
+#focusCol15 {transform: rotate(20deg)}
+#focusCol16 {transform: rotate(30deg)}
+#focusCol17 {transform: rotate(40deg)}
+#focusCol18 {transform: rotate(50deg)}
+#focusCol19 {transform: rotate(60deg)}
+#focusCol20 {transform: rotate(70deg)}
+#focusCol21 {transform: rotate(80deg)}
+#focusCol22 {transform: rotate(90deg)}
+#focusCol23 {transform: rotate(100deg)}
+#focusCol24 {transform: rotate(110deg)}
+#focusCol25 {transform: rotate(120deg)}
+
 #col1 {transform: rotate(0deg);   margin-top:1px;}
-#col2 {transform: rotate(15deg);  margin-top:2px;}
-#col3 {transform: rotate(30deg);  margin-top:3px;}
-#col4 {transform: rotate(45deg);  margin-top:4px;}
-#col5 {transform: rotate(60deg);  margin-top:5px;}
-#col6 {transform: rotate(75deg);  margin-top:6px;}
-#col7 {transform: rotate(90deg);  margin-top:7px;}
-#col8 {transform: rotate(105deg); margin-top:8px;}
-#col9 {transform: rotate(120deg); margin-top:9px;}
-#col10 {transform: rotate(135deg);margin-top:11px;}
-#col11 {transform: rotate(150deg);margin-top:12px;}
-#col12 {transform: rotate(165deg);margin-top:13px;}
-#col13 {transform: rotate(180deg);margin-top:14px;}
-#col14 {transform: rotate(195deg);margin-top:15px;}
-#col15 {transform: rotate(210deg);margin-top:17px;}
-#col16 {transform: rotate(225deg);margin-top:18px;}
-#col17 {transform: rotate(240deg);margin-top:19px;}
-#col18 {transform: rotate(255deg);margin-top:20px;}
-#col19 {transform: rotate(270deg);margin-top:21px;}
-#col20 {transform: rotate(285deg);margin-top:22px;}
-#col21 {transform: rotate(300deg);margin-top:23px;}
-#col22 {transform: rotate(315deg);margin-top:25px;}
-#col23 {transform: rotate(330deg);margin-top:26px;}
-#col24 {transform: rotate(345deg);margin-top:27px;}
+#col2 {transform: rotate(12deg);  margin-top:2px;}
+#col3 {transform: rotate(24deg);  margin-top:3px;}
+#col4 {transform: rotate(36deg);  margin-top:4px;}
+#col5 {transform: rotate(48deg);  margin-top:5px;}
+#col6 {transform: rotate(60deg);  margin-top:6px;}
+#col7 {transform: rotate(72deg);  margin-top:7px;}
+#col8 {transform: rotate(84deg); margin-top:8px;}
+#col9 {transform: rotate(96deg); margin-top:9px;}
+#col10 {transform: rotate(108deg);margin-top:10px;}
+#col11 {transform: rotate(120deg);margin-top:11px;}
+#col12 {transform: rotate(132deg);margin-top:12px;}
+#col13 {transform: rotate(144deg);margin-top:13px;}
+#col14 {transform: rotate(156deg);margin-top:14px;}
+#col15 {transform: rotate(168deg);margin-top:15px;}
+#col16 {transform: rotate(180deg);margin-top:16px;}
+#col17 {transform: rotate(192deg);margin-top:16px;}
+#col18 {transform: rotate(204deg);margin-top:17px;}
+#col19 {transform: rotate(216deg);margin-top:18px;}
+#col20 {transform: rotate(228deg);margin-top:19px;}
+#col21 {transform: rotate(240deg);margin-top:20px;}
+#col22 {transform: rotate(252deg);margin-top:21px;}
+#col23 {transform: rotate(264deg);margin-top:22px;}
+#col24 {transform: rotate(276deg);margin-top:23px;}
+#col25 {transform: rotate(288deg);margin-top:24px;}
+#col26 {transform: rotate(300deg);margin-top:25px;}
+#col27 {transform: rotate(312deg);margin-top:26px;}
+#col28 {transform: rotate(324deg);margin-top:27px;}
+#col29 {transform: rotate(336deg);margin-top:28px;}
+#col30 {transform: rotate(348deg);margin-top:28px;}

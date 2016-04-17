@@ -12,17 +12,23 @@
 <body style="height: 100%; width:100%;">
   <div class="container">
     <% if @debug %>
-      <div id="debug">
-        <div id="debugGo" class="btn">GO!</div>
+      <div class="centered" id="debug">
+        <div id="debugScore">N/A</div>
       </div>
-      <script>
-        $("#debugGo").click(function(){start();});
-      </script>
     <% end %>
     <div class="overlay">
       <div class="centered pulsing" id="idle">&nbsp;</div>
+      <div class="centered" id="focus">
+        <% "Focus to find the insight".split("").each_with_index do |l,i| %>
+        <div class="focusColumn" id="focusCol<%=i+1%>">
+          <div class="focusInnerLetters">
+            <%=l%>
+          </div>
+        </div>
+        <% end %>
+      </div>
       <div class="centered" id="letters">
-        <% (1..24).to_a.shuffle.each_with_index do |x,i| %>
+        <% (1..30).to_a.shuffle.each_with_index do |x,i| %>
         <div class="column" id="col<%=x%>">
           <div class="innerLetters phase<%=i%3%>" id="inner<%=x%>">
           </div>
@@ -33,6 +39,8 @@
   </div>
 
   <script type="text/javascript">
+    window.version = <%= $version %>;
+    window.debug = <%= $debug %>;
     window.onload = function(){
       connectSocket();
     }

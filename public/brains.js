@@ -1,4 +1,19 @@
 var ws;
+var currentPhase = 0;
+var locked = false;
+
+var phrases = [
+  "Simplicity is the ultimate sophistication",
+  "Creativity has no fear of failure",
+  "Beauty is the ultimate defence against complexity",
+  "This world is but a canvas to our imagination",
+  "Inspiration is the seed Design but the flower",
+  "You cant depend on your eyes when your imagination is out of focus",
+  "Every great design begins with an even better story",
+  "Never make for the result make for the act of making",
+  "People ignore design that ignores people",
+  "ideas usually come not from writing but in the midst of living"
+];
 
 function connectSocket() {
   if ( window.location.protocol == "https:" ) {
@@ -22,20 +37,33 @@ function connectSocket() {
 function processMsg(m) {
   j = JSON.parse(m);
   switch(j.message) {
-    case "50":
-      start();
+    case "version":
+      if (j.version != window.version) {
+        window.location.reload();
+      }
       break;
-    case "60":
-      phase1();
-      break;
-    case "70":
-      phase2();
-      break;
-    case "80":
-      phase3();
-      break;
-    case "0":
-      reset();
+    case "update":
+      $("#debugScore").html(j.brains);
+      if (!window.locked) {
+        window.locked = true;
+        score = j.brains;
+        phase = window.currentPhase;
+        if (score >= 80 && phase == 4) {
+          phase5();
+        } else if (score >= 70 && phase == 3) {
+          phase4();
+        } else if (score >= 60 && phase == 2) {
+          phase3();
+        } else if (score >= 50 && phase == 1) {
+          phase2();
+        } else if (score >= 1 && phase == 0) {
+          phase1();
+        } else if (score == -1) {
+          reset();
+        } else {
+          window.locked = false;
+        }
+      }
       break;
     default:
       console.log("Can't process " + j.message + " type...");
@@ -46,8 +74,18 @@ function getLetter() {
   return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
 
-function start() {
-  var phrase = "THIS IS A MESSAGE THAT YOU CAN DECIDE ON LATER";
+function unlock(phase) {
+  window.locked = false;
+  window.currentPhase = phase;
+}
+
+function phase1() {
+  $("#focus").fadeIn(3000);
+  unlock(1);
+}
+
+function phase2() {
+  var phrase = window.phrases[Math.floor(Math.random() * window.phrases.length)].toUpperCase();
 
   var words = phrase.split(" ");
   var count = 0;
@@ -55,59 +93,58 @@ function start() {
 
   for (i = 0; i < words.length; i++) { 
     // Prepend the words with letters
-    var garbage = 20 + (Math.floor(Math.random() * 12) - 6)
+    var garbage = 23 + (Math.floor(Math.random() * 12) - 6)
     for (j = 0; j < garbage; j++) {
       var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
-      $("#inner" + ((count % 24) + 1) ).append(html);
+      $("#inner" + ((count % 30) + 1) ).append(html);
       count++;
     }
 
     // Add our letters... 
     for (j = 0; j < words[i].length; j++) {
       var html = $.parseHTML('<p class="phrasing">' + words[i][j] + '</p>');
-      $("#inner" + ((count % 24) + 1) ).append(html);
+      $("#inner" + ((count % 30) + 1) ).append(html);
       count++;
     }
   }
 
-  while (count < 252) {
+  while (count < 330) {
     var html = $.parseHTML('<p class="garbage">' + getLetter() + '</p>');
-    $("#inner" + ((count % 24) + 1) ).append(html);
+    $("#inner" + ((count % 30) + 1) ).append(html);
     count++;
   }
 
-  $("#debug").hide();
-  $("#idle").fadeOut(3000, function(){
+  $("#idle, #focus").fadeOut(3000, function(){
     $("#letters").fadeIn(500);
     $(".phase0").animate({"padding-top": "250px"}, 3000);
   });
-  setTimeout(function(){phase1();}, 10000);
-}
-
-function phase1() {
-  $(".phase0").animate({"padding-top": "125px"}, 3000);
-  $(".phase1").animate({"padding-top": "125px"}, 6000);
-  setTimeout(function(){phase2();}, 8000);
-}
-
-function phase2() {
-  $(".phase0").animate({"padding-top": "0px"}, 3000);
-  $(".phase1").animate({"padding-top": "0px"}, 6000);
-  $(".phase2").animate({"padding-top": "0px"}, 9000);
-  setTimeout(function(){phase3();}, 10000);
+  setTimeout(function(){unlock(2)}, 8000);
 }
 
 function phase3() {
+  $(".phase0").animate({"padding-top": "125px"}, 3000);
+  $(".phase1").animate({"padding-top": "125px"}, 6000);
+  if (window.debug) {
+    setTimeout(function(){unlock(3);}, 8000);
+  }
+}
+
+function phase4() {
+  $(".phase0, .phase1").animate({"padding-top": "0px"}, 3000);
+  $(".phase2").animate({"padding-top": "0px"}, 6000);
+  setTimeout(function(){unlock(4);}, 8000);
+}
+
+function phase5() {
   $(".garbage").addClass("fadeout");
   $(".phrasing").addClass("glow");
-  setTimeout(function(){reset();}, 30000);
+  setTimeout(function(){unlock(5);}, 30000);
 }
 
 function reset() {
   $("#letters").fadeOut(500, function(){
     $("#idle").fadeIn(3000);
     $(".innerLetters").css({"padding-top": "400px"});
-    $("#debug").show();
+    setTimeout(function(){unlock(0);}, 4000);
   });
-  
 }

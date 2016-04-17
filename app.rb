@@ -1,15 +1,18 @@
 require 'sinatra'
 require 'sinatra-websocket'
 require './models/users'
+require 'json'
 
 set :server, 'thin'
 set :bind, '0.0.0.0'
 $users = []
 $to_close = []
 
+$debug = true
+$version = Time.now.to_i
 
 get '/' do
-  @debug = true
+  @debug = $debug
   if !request.websocket?
     erb :index
   else
@@ -31,6 +34,7 @@ get '/' do
         ws.onopen do |hs|
           warn(hs.to_s)
           $users << me
+          me.conn.send({"message" => "version", "version" => $version}.to_json)
         end
         ws.onmessage do |msg|
           # Stick fingers in your ears and do nothing - I give the orders around here!
@@ -44,4 +48,11 @@ get '/' do
   end
 end
 
-# TODO : Add an endpoint for the pi to talk to with thresholds
+get '/api/:brains/?' do
+  score = params[:brains].to_i.round(0)
+  warn("got #{params[:brains]} -> sending to #{$users.length}")
+  $users.each do |w|
+    w.conn.send({"message" => "update", "brains" => score}.to_json)
+  end
+  "OK"
+end
