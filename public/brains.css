@@ -1,10 +1,6 @@
 body {
   background-color: #000;
   color: white;
-  -webkit-transform: scale(-1, 1);
-  -mox-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-  transform: scale(-1, 1);
 }
 
 img {
